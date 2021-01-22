@@ -1,18 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Amazon.EC2;
-using Amazon;
-using Amazon.Runtime.CredentialManagement;
+using Angular_Ex1_Backend.Database.CodeFirst;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Angular_Ex1_Backend
 {
@@ -29,7 +23,13 @@ namespace Angular_Ex1_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<AngularTest1DbContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
+                    new MySqlServerVersion(new System.Version(5, 5, 68)),
+                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
+
             services.AddScoped<AmazonEC2Client>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

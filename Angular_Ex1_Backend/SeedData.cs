@@ -10,7 +10,7 @@ namespace Angular_Ex1_Backend
     {
         public static void SeedDatabase(IApplicationBuilder app)
         {
-
+            
         }
     }
 }
