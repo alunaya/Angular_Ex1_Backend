@@ -3,14 +3,16 @@ using System;
 using Angular_Ex1_Backend.Database.CodeFirst;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Angular_Ex1_Backend.Database.DbMigration
 {
     [DbContext(typeof(AngularTest1DbContext))]
-    partial class AngularTest1DbContextModelSnapshot : ModelSnapshot
+    [Migration("20210123024006_add-month-table")]
+    partial class addmonthtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,6 +66,9 @@ namespace Angular_Ex1_Backend.Database.DbMigration
 
                     b.Property<decimal>("Bill")
                         .HasColumnType("decimal(65,30)");
+
+                    b.Property<DateTime>("MonthYear")
+                        .HasColumnType("datetime");
 
                     b.Property<long?>("MonthsMonthId")
                         .HasColumnType("bigint");

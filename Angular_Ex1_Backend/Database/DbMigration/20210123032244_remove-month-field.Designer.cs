@@ -3,14 +3,16 @@ using System;
 using Angular_Ex1_Backend.Database.CodeFirst;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Angular_Ex1_Backend.Database.DbMigration
 {
     [DbContext(typeof(AngularTest1DbContext))]
-    partial class AngularTest1DbContextModelSnapshot : ModelSnapshot
+    [Migration("20210123032244_remove-month-field")]
+    partial class removemonthfield
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Angular_Ex1_Backend.Database.CodeFirst
 {
-    public class ReservationCoverage
+    public class Months
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-        public string InstanceType { get; set; }
-        public float ReservedHours { get; set; }
-        public float TotalHours { get; set; }
-        public Months Months { get; set; }
-
+        public long MonthId { get; set; }
+        public DateTime Month { get; set; }
+        public List<ServicesBill> ServicesBills { get; set; }
+        public List<ReservationCoverage> ReservationCoverages { get; set; }
     }
 }

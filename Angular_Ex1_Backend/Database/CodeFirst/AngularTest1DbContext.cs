@@ -10,6 +10,7 @@ namespace Angular_Ex1_Backend.Database.CodeFirst
     {
         public DbSet<ServicesBill> ServicesBill { get; set; }
         public DbSet<ReservationCoverage> ReservationCoverages { get; set; }
+        public DbSet<Months> Months { get; set; }
         public AngularTest1DbContext(DbContextOptions<AngularTest1DbContext> dbContextOptions): 
             base(dbContextOptions)
         {

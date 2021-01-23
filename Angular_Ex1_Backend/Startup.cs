@@ -7,6 +7,8 @@ using Amazon.EC2;
 using Angular_Ex1_Backend.Database.CodeFirst;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Angular_Ex1_Backend.Repository;
+using Angular_Ex1_Backend.Business;
 
 namespace Angular_Ex1_Backend
 {
@@ -29,6 +31,13 @@ namespace Angular_Ex1_Backend
                     mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
 
             services.AddScoped<AmazonEC2Client>();
+
+            services.AddScoped<IMonthData, MonthData>();
+            services.AddScoped<IServiceBillingData, ServiceBillingData>();
+            services.AddScoped<IReservedCoverageData, ReservedCoverageData>();
+            services.AddScoped<IMonthRepo, MonthRepo>();
+            services.AddScoped<IServicesBillingRepo, ServicesBillingRepo>();
+            services.AddScoped<IReservationCoverageRepo, ReservationCoverageRepo>();
 
             services.AddHostedService<SeedData>();
         }

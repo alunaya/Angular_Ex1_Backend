@@ -28,9 +28,16 @@ namespace Angular_Ex1_Backend
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     const int numberOfRandomInstanceTypes = 10;
+                    const int numberOfRandomServices = 7;
+                    const int mockDataNumberOfMonths = 24;
+                    DateTime DateBeginMockData = new DateTime(2018, 1, 1);
+
+                    string[] exampleAwsServices = {"EC2","RDS","S3","Other", "CodeBuild", "Rekognition", "Polly", "Lex", "CodeCommit", "Lambda", "DynamoDb", "ElastiCache", "CloudFront", "RedShift", "SNS" };
 
                     var dbContext = scope.ServiceProvider.GetRequiredService<AngularTest1DbContext>();
-                    if (dbContext.ServicesBill.Count() > 0 && dbContext.ReservationCoverages.Count() > 0)
+                    if (dbContext.Months.Count() > 0
+                        && dbContext.ServicesBill.Count() > 0 
+                        && dbContext.ReservationCoverages.Count() > 0)
                     {
                         return;
                     }
@@ -40,15 +47,58 @@ namespace Angular_Ex1_Backend
                     var rand = new Random();
 
                     HashSet<string> instanceTypes = new HashSet<string>();
-                    while (instanceTypes.Count < numberOfRandomInstanceTypes)
-                    {
-                        var item = result.InstanceTypeOfferings[rand.Next(result.InstanceTypeOfferings.Count)].InstanceType;
-                        instanceTypes.Add(item);
-                    }
+                    HashSet<string> services = new HashSet<string>();
 
-                    foreach (var instanceType in instanceTypes)
-                    {
-                        
+
+                    for (int i = 0; i< mockDataNumberOfMonths; i++) {
+                        var month = new Months
+                        {
+                            Month = DateBeginMockData.AddMonths(i)
+                        };
+
+                        dbContext.Months.Add(new Months {
+                            Month = DateBeginMockData.AddMonths(i)
+                        });
+
+                        if (month.Month.Month == 1 || month.Month.Month == 6)
+                        {
+                            while (instanceTypes.Count < numberOfRandomInstanceTypes)
+                            {
+                                var item = result.InstanceTypeOfferings[rand.Next(result.InstanceTypeOfferings.Count)].InstanceType;
+                                instanceTypes.Add(item);
+                            }
+
+                            while (services.Count < numberOfRandomServices)
+                            {
+                                var item = result.InstanceTypeOfferings[rand.Next(result.InstanceTypeOfferings.Count)].InstanceType;
+                                instanceTypes.Add(item);
+                            }
+                        }
+
+                        foreach (var service in services)
+                        {
+                            dbContext.ServicesBill.Add(new ServicesBill
+                            {
+                                Months = month,
+                                ServicesName = service,
+                                Bill = (decimal)Math.Round(rand.NextFloat(1000, 4000), 2)
+                            });
+                        }
+
+                        foreach (var instanceType in instanceTypes)
+                        {
+                            float reservedHours = (float)Math.Round(rand.NextFloat(400, 750), 2);
+
+                            dbContext.ReservationCoverages.Add(new ReservationCoverage
+                            {
+                                Months = month,
+                                InstanceType = instanceType,
+                                ReservedHours = reservedHours,
+                                TotalHours = reservedHours + (float)Math.Round(rand.NextFloat(200, 3000), 2)
+                            });
+                        }
+
+                        dbContext.SaveChanges();
                     }
                 }
             }catch(Exception ex)

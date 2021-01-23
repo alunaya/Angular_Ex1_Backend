@@ -14,7 +14,7 @@ namespace Angular_Ex1_Backend.Database.CodeFirst
         public long Id { get; set; }
 
         public string ServicesName { get; set; }
-        public DateTime MonthYear { get; set; }
         public decimal Bill { get; set; }
+        public Months Months { get; set; }
     }
 }
