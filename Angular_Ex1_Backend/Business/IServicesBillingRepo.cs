@@ -4,6 +4,6 @@ namespace Angular_Ex1_Backend.Business
 {
     public interface IServicesBillingRepo
     {
-        ServicesBillingModel GetServiceBilling(long monthId);
+        ServicesBillingModel GetServiceBilling(string monthId);
     }
 }

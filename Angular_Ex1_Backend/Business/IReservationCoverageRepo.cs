@@ -6,6 +6,6 @@ namespace Angular_Ex1_Backend.Business
 {
     public interface IReservationCoverageRepo
     {
-        List<ReservationCoverageModel> GetReservationCoverage(long monthId);
+        List<ReservationCoverageModel> GetReservationCoverage(string monthId);
     }
 }

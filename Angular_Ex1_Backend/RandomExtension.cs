@@ -9,11 +9,7 @@ namespace Angular_Ex1_Backend
     {
         public static float NextFloat(this Random random, float minValue, float maxValue)
         {
-            double mantissa = (random.NextDouble() * 2.0) - 1.0;
-            // choose -149 instead of -126 to also generate subnormal floats (*)
-            //double exponent = Math.Pow(2.0, random.Next(-126, 128));
-            double exponent = maxValue- minValue;
-            return (float)(mantissa * exponent);
+            return (float)Math.Round((random.NextDouble() * (maxValue - minValue)) + minValue, 2);
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Angular_Ex1_Backend.Repository;
 using Angular_Ex1_Backend.Business;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace Angular_Ex1_Backend
 {
@@ -39,6 +40,15 @@ namespace Angular_Ex1_Backend
             services.AddScoped<IServicesBillingRepo, ServicesBillingRepo>();
             services.AddScoped<IReservationCoverageRepo, ReservationCoverageRepo>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             services.AddHostedService<SeedData>();
         }
 
@@ -60,6 +70,22 @@ namespace Angular_Ex1_Backend
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "Frontend";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+
+                
+            });
+
         }
     }
 }

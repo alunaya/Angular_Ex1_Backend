@@ -18,7 +18,7 @@ namespace Angular_Ex1_Backend.Business
             this.monthData = monthData ?? throw new ArgumentNullException(nameof(monthData));
         }
 
-        public ServicesBillingModel GetServiceBilling(long monthId)
+        public ServicesBillingModel GetServiceBilling(string monthId)
         {
             ServicesBillingModel result = new ServicesBillingModel();
             result.ServiceBills = serviceBillingData.GetServicesBill(monthId).Select(x => new ServiceBill

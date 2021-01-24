@@ -7,7 +7,7 @@ namespace Angular_Ex1_Backend.Model
 {
     public class MonthModel
     {
-        public long MonthId { get; set; }
+        public string MonthId { get; set; }
         public string DateString { get; set; }
     }
 }

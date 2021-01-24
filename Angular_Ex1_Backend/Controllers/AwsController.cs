@@ -33,13 +33,13 @@ namespace Angular_Ex1_Backend.Controllers
             return monthRepo.GetAllMonths();
         }
 
-        [HttpGet("reservation-coverage")]
-        public async Task<List<ReservationCoverageModel>> GetReservationCoverage(long monthId) {
+        [HttpGet("reservation-coverage/{monthId}")]
+        public async Task<List<ReservationCoverageModel>> GetReservationCoverage(string monthId) {
             return reservedCoverageRepo.GetReservationCoverage(monthId);
         }
 
-        [HttpGet("services-bill")]
-        public async Task<ServicesBillingModel> GetServicesBilling(long monthId)
+        [HttpGet("services-bill/{monthId}")]
+        public async Task<ServicesBillingModel> GetServicesBilling(string monthId)
         {
             return serviceBillingRepo.GetServiceBilling(monthId);
         }

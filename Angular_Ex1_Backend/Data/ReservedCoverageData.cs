@@ -20,9 +20,9 @@ namespace Angular_Ex1_Backend.Repository
             return context.ReservationCoverages.Where(x => x.Months.MonthId == month.MonthId).ToList();
         }
 
-        public List<ReservationCoverage> GetReservationCoverage(long monthId)
+        public List<ReservationCoverage> GetReservationCoverage(string monthId)
         {
-            return context.ReservationCoverages.Where(x => x.Months.MonthId == monthId).ToList();
+            return context.ReservationCoverages.Where(x => x.Months.MonthId.ToString() == monthId).ToList();
         }
     }
 }

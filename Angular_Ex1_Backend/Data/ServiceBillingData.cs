@@ -20,21 +20,21 @@ namespace Angular_Ex1_Backend.Repository
             return context.ServicesBill.Where(x => x.Months.MonthId == month.MonthId).ToList();
         }
 
-        public List<ServicesBill> GetServicesBill(long monthId)
+        public List<ServicesBill> GetServicesBill(string monthId)
         {
-            return context.ServicesBill.Where(x => x.Months.MonthId == monthId).ToList();
+            return context.ServicesBill.Where(x => x.Months.MonthId.ToString() == monthId).ToList();
         }
 
-        public decimal? GetPreviousMonthBill(long monthId) {
+        public decimal? GetPreviousMonthBill(string monthId) {
 
-            var currentMonths = context.Months.Where(x => x.MonthId == monthId).FirstOrDefault();
+            var currentMonths = context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
             if(currentMonths == null)
             {
                 return null;
             }
 
             var previousMonth = context.Months.Where(x =>
-                x.Month.AddMonths(1).Month == currentMonths.Month.Month && x.Month.AddMonths(1).Year == currentMonths.Month.Year
+                x.Date.AddMonths(1).Month == currentMonths.Date.Month && x.Date.AddMonths(1).Year == currentMonths.Date.Year
             ).FirstOrDefault();
 
             if(previousMonth == null)
@@ -43,7 +43,7 @@ namespace Angular_Ex1_Backend.Repository
             }
 
             return context.ServicesBill.Where(x =>
-                x.Months.Month.Month == previousMonth.Month.Month && x.Months.Month.Year == previousMonth.Month.Year
+                x.Months.Date.Month == previousMonth.Date.Month && x.Months.Date.Year == previousMonth.Date.Year
             ).Sum(x => x.Bill);
         }
 

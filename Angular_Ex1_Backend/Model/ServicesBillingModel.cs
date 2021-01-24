@@ -26,7 +26,7 @@ namespace Angular_Ex1_Backend.Model
             get {
                 if (PreviousMonthCost.HasValue)
                 {
-                    return TotalCost - EstimatedCost;
+                    return TotalCost - PreviousMonthCost;
                 }
                 return null;
             }

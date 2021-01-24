@@ -17,7 +17,7 @@ namespace Angular_Ex1_Backend.Business
             this.reservedCoverageRepo = reservedCoverageRepo ?? throw new ArgumentNullException(nameof(reservedCoverageRepo));
         }
 
-        public List<ReservationCoverageModel> GetReservationCoverage(long monthId)
+        public List<ReservationCoverageModel> GetReservationCoverage(string monthId)
         {
             return reservedCoverageRepo.GetReservationCoverage(monthId).Select(x=>new ReservationCoverageModel {
                 InstanceType = x.InstanceType,

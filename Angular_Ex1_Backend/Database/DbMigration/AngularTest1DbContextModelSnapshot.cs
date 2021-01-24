@@ -19,11 +19,11 @@ namespace Angular_Ex1_Backend.Database.DbMigration
 
             modelBuilder.Entity("Angular_Ex1_Backend.Database.CodeFirst.Months", b =>
                 {
-                    b.Property<long>("MonthId")
+                    b.Property<Guid>("MonthId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("Month")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime");
 
                     b.HasKey("MonthId");
@@ -40,8 +40,8 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                     b.Property<string>("InstanceType")
                         .HasColumnType("longtext");
 
-                    b.Property<long?>("MonthsMonthId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("MonthsMonthId")
+                        .HasColumnType("char(36)");
 
                     b.Property<float>("ReservedHours")
                         .HasColumnType("float");
@@ -65,8 +65,8 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                     b.Property<decimal>("Bill")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<long?>("MonthsMonthId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("MonthsMonthId")
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("ServicesName")
                         .HasColumnType("longtext");

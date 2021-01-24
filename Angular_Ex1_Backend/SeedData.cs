@@ -28,11 +28,10 @@ namespace Angular_Ex1_Backend
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     const int numberOfRandomInstanceTypes = 10;
-                    const int numberOfRandomServices = 7;
-                    const int mockDataNumberOfMonths = 24;
+                    const int numberOfRandomServices = 6;
                     DateTime DateBeginMockData = new DateTime(2018, 1, 1);
 
-                    string[] exampleAwsServices = {"EC2","RDS","S3","Other", "CodeBuild", "Rekognition", "Polly", "Lex", "CodeCommit", "Lambda", "DynamoDb", "ElastiCache", "CloudFront", "RedShift", "SNS" };
+                    string[] exampleAwsServices = {"EC2","RDS","S3","Other", "CodeBuild", "Rekognition", "Polly", "Lex", "CodeCommit", "Lambda", "DynamoDb", "ElastiCache", "CloudFront", "RedShift", "SNS", "GatwayApi" };
 
                     var dbContext = scope.ServiceProvider.GetRequiredService<AngularTest1DbContext>();
                     if (dbContext.Months.Count() > 0
@@ -50,17 +49,21 @@ namespace Angular_Ex1_Backend
                     HashSet<string> services = new HashSet<string>();
 
 
-                    for (int i = 0; i< mockDataNumberOfMonths; i++) {
+                    for (int i = 0;; i++) {
+
                         var month = new Months
                         {
-                            Month = DateBeginMockData.AddMonths(i)
+                            Date = DateBeginMockData.AddMonths(i)
                         };
 
-                        dbContext.Months.Add(new Months {
-                            Month = DateBeginMockData.AddMonths(i)
-                        });
+                        if(month.Date > DateTime.Now)
+                        {
+                            break;
+                        }
 
-                        if (month.Month.Month == 1 || month.Month.Month == 6)
+                        dbContext.Months.Add(month);
+
+                        if (month.Date.Month == 1 || month.Date.Month == 6)
                         {
                             while (instanceTypes.Count < numberOfRandomInstanceTypes)
                             {
@@ -70,8 +73,8 @@ namespace Angular_Ex1_Backend
 
                             while (services.Count < numberOfRandomServices)
                             {
-                                var item = result.InstanceTypeOfferings[rand.Next(result.InstanceTypeOfferings.Count)].InstanceType;
-                                instanceTypes.Add(item);
+                                var item = exampleAwsServices[rand.Next(exampleAwsServices.Length)];
+                                services.Add(item);
                             }
                         }
 
@@ -98,8 +101,9 @@ namespace Angular_Ex1_Backend
                             });
                         }
 
-                        dbContext.SaveChanges();
+                        
                     }
+                    dbContext.SaveChanges();
                 }
             }catch(Exception ex)
             {

@@ -11,8 +11,8 @@ namespace Angular_Ex1_Backend.Database.CodeFirst
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long MonthId { get; set; }
-        public DateTime Month { get; set; }
+        public Guid MonthId { get; set; }
+        public DateTime Date { get; set; }
         public List<ServicesBill> ServicesBills { get; set; }
         public List<ReservationCoverage> ReservationCoverages { get; set; }
     }

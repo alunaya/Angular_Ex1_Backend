@@ -6,9 +6,9 @@ namespace Angular_Ex1_Backend.Repository
 {
     public interface IMonthData
     {
-        bool CheckIsCurrentMonth(long monthId);
+        bool CheckIsCurrentMonth(string monthId);
         List<Months> GetAllMonths();
         Months GetMonth(DateTime time);
-        Months GetMonth(long monthId);
+        Months GetMonth(string monthId);
     }
 }

@@ -26,12 +26,13 @@ namespace Angular_Ex1_Backend.Business
             {
                 result.Add(new MonthModel
                 {
-                    MonthId = month.MonthId,
-                    DateString = month.Month.ToString("yyyy MMMM")
+                    MonthId = month.MonthId.ToString(),
+                    DateString = month.Date.ToString("yyyy MMMM")
                 });
             }
-
+            
             return result;
+
         }
     }
 }

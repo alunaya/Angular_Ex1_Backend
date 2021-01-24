@@ -22,23 +22,23 @@ namespace Angular_Ex1_Backend.Repository
 
         public Months GetMonth(DateTime time)
         {
-            return context.Months.Where(x => time.Month == x.Month.Month && time.Year == x.Month.Year).FirstOrDefault();
+            return context.Months.Where(x => time.Month == x.Date.Month && time.Year == x.Date.Year).FirstOrDefault();
         }
 
-        public Months GetMonth(long monthId)
+        public Months GetMonth(string monthId)
         {
-            return context.Months.Where(x => x.MonthId == monthId).FirstOrDefault();
+            return context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
         }
 
-        public bool CheckIsCurrentMonth(long monthId)
+        public bool CheckIsCurrentMonth(string monthId)
         {
-            var currentMonth = context.Months.Where(x => x.MonthId == monthId).FirstOrDefault();
+            var currentMonth = context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
             if(currentMonth == null)
             {
                 return false;
             }
 
-            return currentMonth.Month.Month == DateTime.Now.Month && currentMonth.Month.Year == DateTime.Now.Year;
+            return currentMonth.Date.Month == DateTime.Now.Month && currentMonth.Date.Year == DateTime.Now.Year;
         }
     }
 }
