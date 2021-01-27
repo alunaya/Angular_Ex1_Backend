@@ -10,6 +10,8 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Angular_Ex1_Backend.Repository;
 using Angular_Ex1_Backend.Business;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using System.Reflection;
 
 namespace Angular_Ex1_Backend
 {
@@ -26,10 +28,16 @@ namespace Angular_Ex1_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AngularTest1DbContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
-                    new MySqlServerVersion(new System.Version(5, 5, 68)),
-                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
+            //services.AddDbContext<AngularTest1DbContext>(
+            //    options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
+            //        new MySqlServerVersion(new System.Version(5, 5, 68)),
+            //        mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
+
+            services.AddDbContext<AngularTest1DbContext>(options => options.UseSqlite(
+                "Filename=TestDatabase.db", options =>
+                {
+                    options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
+                }));
 
             services.AddScoped<AmazonEC2Client>();
 
@@ -60,7 +68,7 @@ namespace Angular_Ex1_Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -71,20 +79,20 @@ namespace Angular_Ex1_Backend
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+            //app.UseSpa(spa =>
+            //{
+            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "Frontend";
+            //    spa.Options.SourcePath = "Frontend";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
 
                 
-            });
+            //});
 
         }
     }

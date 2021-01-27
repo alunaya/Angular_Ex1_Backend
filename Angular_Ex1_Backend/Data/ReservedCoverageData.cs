@@ -22,7 +22,8 @@ namespace Angular_Ex1_Backend.Repository
 
         public List<ReservationCoverage> GetReservationCoverage(string monthId)
         {
-            return context.ReservationCoverages.Where(x => x.Months.MonthId.ToString() == monthId).ToList();
+            Guid monthGuid = Guid.Parse(monthId);
+            return context.ReservationCoverages.Where(x => x.Months.MonthId == monthGuid).ToList();
         }
     }
 }

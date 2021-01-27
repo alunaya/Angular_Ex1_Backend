@@ -53,6 +53,7 @@ namespace Angular_Ex1_Backend
 
                         var month = new Months
                         {
+                            MonthId = new Guid(),
                             Date = DateBeginMockData.AddMonths(i)
                         };
 

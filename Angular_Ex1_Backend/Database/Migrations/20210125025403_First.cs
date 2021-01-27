@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Angular_Ex1_Backend.Database.DbMigration
+namespace Angular_Ex1_Backend.Database.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +11,8 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                 name: "Months",
                 columns: table => new
                 {
-                    MonthId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false)
+                    MonthId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,12 +23,12 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                 name: "ReservationCoverages",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    InstanceType = table.Column<string>(type: "longtext", nullable: true),
-                    ReservedHours = table.Column<float>(type: "float", nullable: false),
-                    TotalHours = table.Column<float>(type: "float", nullable: false),
-                    MonthsMonthId = table.Column<Guid>(type: "char(36)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    InstanceType = table.Column<string>(type: "TEXT", nullable: true),
+                    ReservedHours = table.Column<float>(type: "REAL", nullable: false),
+                    TotalHours = table.Column<float>(type: "REAL", nullable: false),
+                    MonthsMonthId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,11 +45,11 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                 name: "ServicesBill",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ServicesName = table.Column<string>(type: "longtext", nullable: true),
-                    Bill = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    MonthsMonthId = table.Column<Guid>(type: "char(36)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ServicesName = table.Column<string>(type: "TEXT", nullable: true),
+                    Bill = table.Column<decimal>(type: "TEXT", nullable: false),
+                    MonthsMonthId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

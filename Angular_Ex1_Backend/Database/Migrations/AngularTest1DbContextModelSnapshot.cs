@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Angular_Ex1_Backend.Database.DbMigration
+namespace Angular_Ex1_Backend.Database.Migrations
 {
     [DbContext(typeof(AngularTest1DbContext))]
     partial class AngularTest1DbContextModelSnapshot : ModelSnapshot
@@ -14,17 +14,16 @@ namespace Angular_Ex1_Backend.Database.DbMigration
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("Angular_Ex1_Backend.Database.CodeFirst.Months", b =>
                 {
                     b.Property<Guid>("MonthId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("MonthId");
 
@@ -35,19 +34,19 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("InstanceType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid?>("MonthsMonthId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("ReservedHours")
-                        .HasColumnType("float");
+                        .HasColumnType("REAL");
 
                     b.Property<float>("TotalHours")
-                        .HasColumnType("float");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -60,16 +59,16 @@ namespace Angular_Ex1_Backend.Database.DbMigration
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Bill")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid?>("MonthsMonthId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ServicesName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,23 @@
+<mat-list>
+  <mat-form-field appearance="fill">
+  <mat-label>Chose month</mat-label>
+    <mat-select [(value)]="month" (valueChange)="test($event)">
+      <mat-option [value]="'a'">
+        a
+      </mat-option>
+      <mat-option [value]="'b'">
+        b
+      </mat-option>
+      <mat-option [value]="'c'">
+        c
+      </mat-option>
+      <mat-option [value]="'d'">
+        d
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-list-item><app-service-bill-infoview [value]="month"></app-service-bill-infoview></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Item 3</mat-list-item>
+  </mat-list>

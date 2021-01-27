@@ -1,18 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import AppComponent from './app.component';
+import { DashboardPanel } from './dashboard-panel/dashboard-panel.component'
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { MatExpansionModule } from '@angular/material/expansion'
+import { MatDividerModule } from '@angular/material/divider'
+import { MatIconModule } from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+
+import { CostingInfoviewComponent } from './costing-infoview/costing-infoview.component';
+import { ServiceBillInfoviewComponent } from './service-bill-infoview/service-bill-infoview.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatDividerModule,
+    MatSelectModule
   ],
-  providers: [],
+  declarations: [
+    AppComponent,
+    DashboardPanel,
+    CostingInfoviewComponent,
+    ServiceBillInfoviewComponent,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+

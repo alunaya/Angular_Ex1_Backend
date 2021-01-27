@@ -22,12 +22,13 @@ namespace Angular_Ex1_Backend.Repository
 
         public List<ServicesBill> GetServicesBill(string monthId)
         {
-            return context.ServicesBill.Where(x => x.Months.MonthId.ToString() == monthId).ToList();
+            Guid monthGuid = Guid.Parse(monthId);
+            return context.ServicesBill.Where(x => x.Months.MonthId == monthGuid).ToList();
         }
 
         public decimal? GetPreviousMonthBill(string monthId) {
-
-            var currentMonths = context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
+            Guid monthGuid = Guid.Parse(monthId);
+            var currentMonths = context.Months.Where(x => x.MonthId == monthGuid).FirstOrDefault();
             if(currentMonths == null)
             {
                 return null;
@@ -44,7 +45,7 @@ namespace Angular_Ex1_Backend.Repository
 
             return context.ServicesBill.Where(x =>
                 x.Months.Date.Month == previousMonth.Date.Month && x.Months.Date.Year == previousMonth.Date.Year
-            ).Sum(x => x.Bill);
+            ).ToList().Sum(x => x.Bill);
         }
 
         

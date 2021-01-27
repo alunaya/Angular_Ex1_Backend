@@ -1,0 +1,12 @@
+<mat-accordion [togglePosition]="'before'">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      {{label}}
+    </mat-expansion-panel-header>
+
+    <mat-panel-description>
+      <h1>{{title}}</h1>
+    </mat-panel-description>
+    <ng-content></ng-content>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -27,12 +27,14 @@ namespace Angular_Ex1_Backend.Repository
 
         public Months GetMonth(string monthId)
         {
-            return context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
+            Guid monthGuid = Guid.Parse(monthId);
+            return context.Months.Where(x => x.MonthId == monthGuid).FirstOrDefault();
         }
 
         public bool CheckIsCurrentMonth(string monthId)
         {
-            var currentMonth = context.Months.Where(x => x.MonthId.ToString() == monthId).FirstOrDefault();
+            Guid monthGuid = Guid.Parse(monthId);
+            var currentMonth = context.Months.Where(x => x.MonthId == monthGuid).FirstOrDefault();
             if(currentMonth == null)
             {
                 return false;
