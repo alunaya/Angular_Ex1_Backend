@@ -9,7 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatIconModule } from '@angular/material/icon';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list'
 
 import { CostingInfoviewComponent } from './costing-infoview/costing-infoview.component';
 import { ServiceBillInfoviewComponent } from './service-bill-infoview/service-bill-infoview.component';
@@ -22,7 +23,8 @@ import { ServiceBillInfoviewComponent } from './service-bill-infoview/service-bi
     MatIconModule,
     FlexLayoutModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   declarations: [
     AppComponent,
