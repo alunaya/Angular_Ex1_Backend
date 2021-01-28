@@ -15,8 +15,8 @@ namespace Angular_Ex1_Backend.Model
         }
         public decimal? PreviousMonthCost { get; set; }        
         public decimal? EstimatedCost { get {
-                if (TotalCost > 0) {
-                    return TotalCost + 200;
+                if (TotalCost > 0 && IsCurrentMonth) {
+                    return TotalCost + 500;
                 }
 
                 return null;
