@@ -1,0 +1,26 @@
+.table-container{
+    height: 200px;
+    overflow-y: auto;
+}
+
+.table td, .table th {
+    padding: 0.10rem;
+}
+
+td.td-legend{
+    padding: 0 0 0 0
+}
+
+tfoot,
+tfoot th,
+tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  z-index:4;
+}
+
+.section-label{
+    color:cornflowerblue;
+}

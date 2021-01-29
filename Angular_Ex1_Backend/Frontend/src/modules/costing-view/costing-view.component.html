@@ -1,0 +1,17 @@
+<div class='container'>
+    <app-simple-expand-panel [Title]="'Costing'">
+        <div class='col-12 mb-4'>
+            <div class="form-group col-3">
+                <select class="form-control" (change)="getSelectedMonth($event)">
+                    <option *ngFor="let month of monthData" [value]="month.monthId">{{month.dateString}}</option>
+                </select>
+            </div>
+        </div>
+        <div class='col-12 mb-4'>
+            <app-service-bill-infoview [monthId]="monthId"></app-service-bill-infoview>
+        </div>
+        <div class='col-12'>
+            <app-reservation-coverage [monthId]="monthId"></app-reservation-coverage>
+        </div>
+    </app-simple-expand-panel>
+</div>

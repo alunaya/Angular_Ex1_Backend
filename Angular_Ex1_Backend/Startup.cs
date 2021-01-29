@@ -53,8 +53,7 @@ namespace Angular_Ex1_Backend
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                    .AllowAnyHeader());
             });
 
             services.AddHostedService<SeedData>();
@@ -69,6 +68,8 @@ namespace Angular_Ex1_Backend
             }
 
             //app.UseHttpsRedirection();
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
