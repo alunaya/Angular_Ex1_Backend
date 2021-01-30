@@ -25,7 +25,6 @@ export class ReservationCoverageComponent implements OnChanges {
     @Input() monthId = ''
     reservationData: ReservationData[] = defaultReservationData;
     chartData: any = {
-        domain:[]
     };
     private apiClient: HttpClient;
 
@@ -46,10 +45,8 @@ export class ReservationCoverageComponent implements OnChanges {
             let reservationData = responseBody as ReservationData[];
             this.reservationData = reservationData;
             this.chartData = reservationData.map((x)=>({
-                domain:{
                 name: x.instanceType,
                 value: x.totalHours,
-                }
             }))
         })
     }
