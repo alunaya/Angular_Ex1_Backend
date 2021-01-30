@@ -12,6 +12,7 @@ let defaultMonthData: MonthData[] = [];
 @Component({
     selector: 'app-costing-view',
     templateUrl: './costing-view.component.html',
+    styleUrls: ['./costing-view.component.css']
 })
 export class CostingViewComponent{
     monthId: string = '';

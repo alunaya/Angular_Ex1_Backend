@@ -11,7 +11,7 @@
         <div class='text-center'>
             <h5><b>{{costSummary.estimatedCost ? (costSummary.estimatedCost | currency) : '_ _ _'}}</b></h5>
         </div>
-        <div class='text-center'>ESTIMATED SPEND</div>
+        <div class='text-center'>THIS MONTH ESTEMATE</div>
     </div>
     <div class='col-3'>
         <div class='text-center'>
@@ -21,7 +21,7 @@
     </div>
     <div class='col-3'>
         <div class='text-center' 
-        [ngClass]="{'red-text': costSummary.changeFromLastMonth && costSummary.changeFromLastMonth > 0, 'green-text': costSummary.changeFromLastMonth && costSummary.changeFromLastMonth < 0}">
+        [ngClass]="{'text-danger': costSummary.changeFromLastMonth && costSummary.changeFromLastMonth > 0, 'text-success': costSummary.changeFromLastMonth && costSummary.changeFromLastMonth < 0}">
             <h5><b>{{costSummary.changeFromLastMonth ? (costSummary.changeFromLastMonth | currency):'_ _ _'}}</b></h5>
         </div>
         <div class='text-center'>CHANGE FROM LAST MONTH </div>
@@ -52,8 +52,8 @@
             <tfoot>
                 <tr>
                     <td></td>
-                    <td><b>Total</b></td>
-                    <td><p class="float-right">{{serviceBills.totalCost? (serviceBills.totalCost|currency): "_ _ _"}}</p></td>
+                    <th>TOTAL</th>
+                    <th><p class="float-right">{{serviceBills.totalCost? (serviceBills.totalCost|currency): "_ _ _"}}</p></th>
                 </tr>
             </tfoot>
         </table>

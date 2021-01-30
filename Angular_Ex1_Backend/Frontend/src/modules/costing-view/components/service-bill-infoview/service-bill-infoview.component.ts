@@ -88,8 +88,6 @@ export class ServiceBillInfoviewComponent {
         value: color,
       })
     }
-    console.log(this.tableColor);
-    console.log(this.chartColor);
   }
 
   constructor(apiClient: HttpClient){

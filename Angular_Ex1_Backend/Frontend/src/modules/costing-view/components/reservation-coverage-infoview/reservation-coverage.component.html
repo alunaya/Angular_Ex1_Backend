@@ -1,13 +1,52 @@
 <h6 class="section-label">RESERVATION COVERAGE</h6>
 <div class="row">
     <div class="col-7 table-container">
-
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>
+                        INSTANCE TYPE
+                    </td>
+                    <td>
+                        ON-DEMAND HOURS
+                    </td>
+                    <td>
+                        RESERVED HOURS
+                    </td>
+                    <td>
+                        TOTAL HOURS
+                    </td>
+                    <td>
+                        COVERAGE
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reserveData of reservationData">
+                    <td>
+                        {{reserveData.instanceType}}
+                    </td>
+                    <td class="text-danger">
+                        {{reserveData.onDemandHours}}
+                    </td>
+                    <td class="text-success">
+                        {{reserveData.reservedHours}}
+                    </td>
+                    <td>
+                        {{reserveData.totalHours}}
+                    </td>
+                    <td>
+                        {{reserveData.coverage}}%
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="col-5">
         <ngx-charts-bar-horizontal
             [results]="chartData"
-            yAxis = "true"
-            xAxis = "true"
+            [yAxis] = "true"
+            [xAxis] = "true"
         >
         </ngx-charts-bar-horizontal>
     </div>

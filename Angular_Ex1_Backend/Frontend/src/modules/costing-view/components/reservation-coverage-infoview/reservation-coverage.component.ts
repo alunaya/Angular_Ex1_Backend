@@ -6,6 +6,9 @@ interface ReservationData {
     instanceType: string,
     totalHours: number,
     reservedHours: number,
+    Coverage: number,
+    onDemandHours: number,
+    coverage: number
 }
 
 interface ChartData {
@@ -13,8 +16,7 @@ interface ChartData {
     value: number,
 }
 
-let defaultReservationData: ReservationData[] = [];
-
+const defaultReservationData: ReservationData[] = [];
 
 @Component({
     selector: 'app-reservation-coverage',
@@ -48,6 +50,7 @@ export class ReservationCoverageComponent implements OnChanges {
                 name: x.instanceType,
                 value: x.totalHours,
             }))
+            const maxHoursValue: number = Math.max(...reservationData.map((x) => x.totalHours));
         })
     }
 }   
