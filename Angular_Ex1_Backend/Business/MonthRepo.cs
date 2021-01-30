@@ -27,6 +27,7 @@ namespace Angular_Ex1_Backend.Business
                 result.Add(new MonthModel
                 {
                     MonthId = month.MonthId.ToString(),
+                    Date = month.Date,
                     DateString = month.Date.ToString("yyyy MMMM")
                 });
             }

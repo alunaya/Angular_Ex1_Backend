@@ -28,16 +28,16 @@ namespace Angular_Ex1_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddDbContext<AngularTest1DbContext>(
-            //    options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
-            //        new MySqlServerVersion(new System.Version(5, 5, 68)),
-            //        mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
+            services.AddDbContext<AngularTest1DbContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
+                    new MySqlServerVersion(new System.Version(5, 5, 68)),
+                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
 
-            services.AddDbContext<AngularTest1DbContext>(options => options.UseSqlite(
-                "Filename=TestDatabase.db", options =>
-                {
-                    options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
-                }));
+            //services.AddDbContext<AngularTest1DbContext>(options => options.UseSqlite(
+            //    "Filename=TestDatabase.db", options =>
+            //    {
+            //        options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
+            //    }));
 
             services.AddScoped<AmazonEC2Client>();
 
