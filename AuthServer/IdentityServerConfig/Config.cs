@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,72 +14,41 @@ namespace AuthServer.IdentityServerConfig
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email(),
             };
 
+        public static IEnumerable<ApiScope> ApiScopes => 
+            new List<ApiScope>
+            {
+                new ApiScope(name: "get-costing",   displayName: "get costing data"),
+            };
 
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("api1", "My API #1")
+                new ApiResource("angular-ex1", "api for angular ex1")
             };
 
 
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
-                // client credentials flow client
                 new Client
                 {
-                    ClientId = "client",
-                    ClientName = "Client Credentials Client",
-
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
-
-                    AllowedScopes = { "api1" }
-                },
-
-                // MVC client using code flow + pkce
-                new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
-
-                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
-                    RequirePkce = true,
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-
-                    RedirectUris = { "http://localhost:5003/signin-oidc" },
-                    FrontChannelLogoutUri = "http://localhost:5003/signout-oidc",
-                    PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
-
+                    ClientName = "angular-ex",
+                    ClientId = "angualr-ex",
+                    
+                    AbsoluteRefreshTokenLifetime = (int)TimeSpan.FromDays(7).TotalSeconds,
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1" }
-                },
-
-                // SPA client using code flow + pkce
-                new Client
-                {
-                    ClientId = "spa",
-                    ClientName = "SPA Client",
-                    ClientUri = "http://identityserver.io",
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
                     RequireClientSecret = false,
-
-                    RedirectUris =
+                    AllowedScopes =
                     {
-                        "http://localhost:5002/index.html",
-                        "http://localhost:5002/callback.html",
-                        "http://localhost:5002/silent.html",
-                        "http://localhost:5002/popup.html",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "angular-ex1", "refresh"
                     },
 
-                    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
-                    AllowedCorsOrigins = { "http://localhost:5002" },
-
-                    AllowedScopes = { "openid", "profile", "api1" }
                 }
             };
     }
