@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using IdentityServer4.Test;
 
 namespace AuthServer
 {
@@ -51,8 +52,8 @@ namespace AuthServer
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IResourceOwnerPasswordValidator, PasswordValidator>();
-            services.AddTransient<IProfileService, IdentityProfileService>();
+            services.AddTransient<IResourceOwnerPasswordValidator, TestUserResourceOwnerPasswordValidator>();
+            services.AddTransient<IProfileService, TestUserProfileService>();
 
             IIdentityServerBuilder identityBuilder = services.AddIdentityServer(options =>
             {
@@ -65,8 +66,9 @@ namespace AuthServer
             .AddInMemoryApiResources(Config.Apis)
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>()
-            .AddResourceOwnerValidator<PasswordValidator>()
-            .AddProfileService<IdentityProfileService>();
+            .AddResourceOwnerValidator<TestUserResourceOwnerPasswordValidator>()
+            .AddProfileService<TestUserProfileService>()
+            .AddTestUsers(TestUsers.SetTestUser);
 
             identityBuilder.AddDeveloperSigningCredential();
         }

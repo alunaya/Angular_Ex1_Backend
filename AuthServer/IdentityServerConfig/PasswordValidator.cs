@@ -3,14 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.Test;
 
 namespace AuthServer.IdentityServerConfig
 {
     public class PasswordValidator : IResourceOwnerPasswordValidator
     {
-        Task IResourceOwnerPasswordValidator.ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        private readonly IdentityServer4.Test.TestUserResourceOwnerPasswordValidator;
+        public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(0);
         }
     }
 }

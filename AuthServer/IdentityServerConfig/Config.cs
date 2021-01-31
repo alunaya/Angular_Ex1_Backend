@@ -37,7 +37,7 @@ namespace AuthServer.IdentityServerConfig
                 {
                     ClientName = "angular-ex",
                     ClientId = "angualr-ex",
-                    
+                    AccessTokenLifetime = (int)TimeSpan.FromMinutes(15).TotalSeconds,
                     AbsoluteRefreshTokenLifetime = (int)TimeSpan.FromDays(7).TotalSeconds,
                     AllowOfflineAccess = true,
                     RequireClientSecret = false,
