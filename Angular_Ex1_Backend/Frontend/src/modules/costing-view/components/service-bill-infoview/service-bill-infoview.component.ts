@@ -69,7 +69,7 @@ function getRandomColor(): string {
 export class ServiceBillInfoviewComponent {
 
   @Input() monthId: string ="";
-  private serviceBills: ServiceBillDetails = defaultserviceBills;
+  serviceBills: ServiceBillDetails = defaultserviceBills;
   serviceBillChartData: ChartData[] = [];
   costSummary: CostSummaryData = defaultCostSummary;
   tableColor: Map<string,string> = new Map<string,string>();

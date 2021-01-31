@@ -28,9 +28,5 @@
     <TypeScriptCompile Include="Frontend\src\app\app.component.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Database\Migrations\" />
-  </ItemGroup>
-
 
 </Project>

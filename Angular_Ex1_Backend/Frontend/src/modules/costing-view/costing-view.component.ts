@@ -5,6 +5,7 @@ import config from '../config';
 interface MonthData {
   monthId: string,
   dateString: string,
+  date: Date
 }
 
 let defaultMonthData: MonthData[] = [];
@@ -35,6 +36,9 @@ export class CostingViewComponent{
     this.apiClient.get(`${config.serverUrl}${config.monthUrl}`)
     .subscribe((responseBody) => {
       this.monthData = responseBody as MonthData[];
+      this.monthData.sort((a,b)=>{
+        return a.date.getTime() - b.date.getTime();
+      })
     });
   }
 }
