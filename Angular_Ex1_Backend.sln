@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Angular_Ex1_Backend", "Angular_Ex1_Backend\Angular_Ex1_Backend.csproj", "{8E96A896-26C0-4CB0-BA53-B71EBB9ABE6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer", "AuthServer\AuthServer.csproj", "{1A81A452-BD14-4CCB-A2C0-B806145D94F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer", "AuthServer\AuthServer.csproj", "{1A81A452-BD14-4CCB-A2C0-B806145D94F7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{77544011-70B7-4BDD-BB33-F203CFD25D0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1A81A452-BD14-4CCB-A2C0-B806145D94F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A81A452-BD14-4CCB-A2C0-B806145D94F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A81A452-BD14-4CCB-A2C0-B806145D94F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77544011-70B7-4BDD-BB33-F203CFD25D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77544011-70B7-4BDD-BB33-F203CFD25D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77544011-70B7-4BDD-BB33-F203CFD25D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77544011-70B7-4BDD-BB33-F203CFD25D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

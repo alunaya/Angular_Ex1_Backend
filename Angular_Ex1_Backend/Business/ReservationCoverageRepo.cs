@@ -20,6 +20,7 @@ namespace Angular_Ex1_Backend.Business
         public List<ReservationCoverageModel> GetReservationCoverage(string monthId)
         {
             return reservedCoverageRepo.GetReservationCoverage(monthId).Select(x=>new ReservationCoverageModel {
+                MonthId = monthId,
                 InstanceType = x.InstanceType,
                 TotalHours = x.TotalHours,
                 ReservedHours = x.ReservedHours,

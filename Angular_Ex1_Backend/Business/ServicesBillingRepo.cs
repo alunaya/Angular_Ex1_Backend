@@ -29,7 +29,7 @@ namespace Angular_Ex1_Backend.Business
 
             result.PreviousMonthCost = serviceBillingData.GetPreviousMonthBill(monthId);
             result.IsCurrentMonth = monthData.CheckIsCurrentMonth(monthId);
-
+            result.MonthId = monthId;
             return result;
         }
     }

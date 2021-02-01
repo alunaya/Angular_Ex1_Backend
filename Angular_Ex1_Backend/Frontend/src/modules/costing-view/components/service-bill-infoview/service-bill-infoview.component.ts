@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import config from '../../../config';
 
 interface ServiceBillData {
+  monthId: string,
   isCurrentMonth: boolean,
   totalCost: number,
   previousMonthCost: number | null,
@@ -95,10 +96,10 @@ export class ServiceBillInfoviewComponent {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    this.getMonthData(changes.monthId.currentValue);
+    this.getServiceBillData(changes.monthId.currentValue);
   }
 
-  getMonthData(monthId: string) {
+  getServiceBillData(monthId: string) {
     if( !monthId ){
       return;
     }

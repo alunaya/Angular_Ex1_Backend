@@ -7,6 +7,7 @@ namespace Angular_Ex1_Backend.Model
 {
     public class ReservationCoverageModel
     {
+        public string MonthId { get; set; }
         public string InstanceType { get; set; }
         public float TotalHours { get; set; }
         public float ReservedHours { get; set; }

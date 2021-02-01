@@ -9,7 +9,7 @@ namespace AuthServer.IdentityServerConfig
 {
     public class PasswordValidator : IResourceOwnerPasswordValidator
     {
-        private readonly IdentityServer4.Test.TestUserResourceOwnerPasswordValidator;
+        private readonly IdentityServer4.Test.TestUserResourceOwnerPasswordValidator validator;
         public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
             return Task.FromResult(0);

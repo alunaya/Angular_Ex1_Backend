@@ -36,6 +36,7 @@ export class CostingViewComponent{
     this.apiClient.get(`${config.serverUrl}${config.monthUrl}`)
     .subscribe((responseBody) => {
       this.monthData = responseBody as MonthData[];
+      console.log(this.monthData);
       this.monthData.sort((a,b)=>{
         return a.date.getTime() - b.date.getTime();
       })

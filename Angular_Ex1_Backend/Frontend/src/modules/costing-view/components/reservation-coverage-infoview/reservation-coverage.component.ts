@@ -3,10 +3,10 @@ import config from '../../../config';
 import { HttpClient } from '@angular/common/http'
 
 interface ReservationData {
+    monthId: string,
     instanceType: string,
     totalHours: number,
     reservedHours: number,
-    Coverage: number,
     onDemandHours: number,
     coverage: number
 }

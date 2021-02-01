@@ -40,7 +40,7 @@ namespace Angular_Ex1_Backend.Repository
                 return false;
             }
 
-            return currentMonth.Date.Month == 1 && currentMonth.Date.Year == 2021;
+            return currentMonth.Date.Month == DateTime.Now.Month && currentMonth.Date.Year == DateTime.Now.Year;
         }
     }
 }

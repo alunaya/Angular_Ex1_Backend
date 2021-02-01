@@ -7,6 +7,7 @@ namespace Angular_Ex1_Backend.Model
 {
     public class ServicesBillingModel
     {
+        public string MonthId { get; set; }
         public bool IsCurrentMonth { get; set; }
         public decimal TotalCost { 
             get {
