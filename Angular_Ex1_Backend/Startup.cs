@@ -12,6 +12,9 @@ using Angular_Ex1_Backend.Business;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Logging;
 
 namespace Angular_Ex1_Backend
 {
@@ -56,6 +59,18 @@ namespace Angular_Ex1_Backend
                     .AllowAnyHeader());
             });
 
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options=> {
+                    options.Authority = "http://localhost:6000";
+
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false,
+                    };
+                });
+            IdentityModelEventSource.ShowPII = true;
+
             services.AddHostedService<SeedData>();
         }
 
@@ -73,6 +88,7 @@ namespace Angular_Ex1_Backend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon.EC2;
 using Amazon.EC2.Model;
-using Angular_Ex1_Backend.Database.CodeFirst;
 using Angular_Ex1_Backend.Business;
 using Angular_Ex1_Backend.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Angular_Ex1_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AwsController : ControllerBase
     {
         private readonly AmazonEC2Client ec2Client;

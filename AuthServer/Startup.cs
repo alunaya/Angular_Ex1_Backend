@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using IdentityServer4.Test;
+using Microsoft.IdentityModel.Logging;
 
 namespace AuthServer
 {
