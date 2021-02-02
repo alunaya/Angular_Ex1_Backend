@@ -15,6 +15,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.IdentityModel.Logging;
+using System;
 
 namespace Angular_Ex1_Backend
 {
@@ -67,7 +68,9 @@ namespace Angular_Ex1_Backend
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = false,
+                        ClockSkew = TimeSpan.FromMinutes(5)
                     };
+                   
                 });
             IdentityModelEventSource.ShowPII = true;
 
@@ -82,7 +85,7 @@ namespace Angular_Ex1_Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseCors("CorsPolicy");
 

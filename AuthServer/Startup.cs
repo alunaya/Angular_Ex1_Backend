@@ -82,7 +82,7 @@ namespace AuthServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseIdentityServer();
