@@ -1,18 +1,38 @@
 ﻿using IdentityServer4.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.Test;
+using Microsoft.AspNetCore.Identity;
+using IdentityServer4.Models;
+using IdentityServerConfig;
 
 namespace AuthServer.IdentityServerConfig
 {
     public class PasswordValidator : IResourceOwnerPasswordValidator
     {
-        private readonly IdentityServer4.Test.TestUserResourceOwnerPasswordValidator validator;
-        public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        private readonly SignInManager<ApplicationUser> signInManager;
+
+        public PasswordValidator(SignInManager<ApplicationUser> signInManager)
         {
-            return Task.FromResult(0);
+            this.signInManager = signInManager;
+        }
+
+        public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+        {
+            SignInResult signInResult = await signInManager.CheckPasswordSignInAsync(new ApplicationUser { UserName = context.UserName } ,context.Password, true);
+            if (signInResult.Succeeded) {
+                context.Result = new GrantValidationResult(
+                    subject: context.UserName,
+                    authenticationMethod: IdentityServer4.Models.GrantType.ResourceOwnerPassword
+                    );
+
+                return;
+            }
+
+            context.Result = new GrantValidationResult(
+                TokenRequestErrors.InvalidGrant,
+                "Invalid username or password"
+                    );
+
+            return;
         }
     }
 }

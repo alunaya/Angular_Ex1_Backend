@@ -1,4 +1,4 @@
-﻿using AuthServer.Model;
+﻿using IdentityServerConfig;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

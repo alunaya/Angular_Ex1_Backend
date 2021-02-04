@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AuthServer.Model
+namespace IdentityServerConfig
 {
     public class ApplicationUser: IdentityUser
     {
