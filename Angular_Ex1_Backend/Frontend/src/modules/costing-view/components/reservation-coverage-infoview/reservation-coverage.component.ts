@@ -42,7 +42,7 @@ export class ReservationCoverageComponent implements OnChanges {
             return;
         }
 
-        this.apiClient.get(`${config.serverUrl}${config.reservationCoverage}${monthId}`)
+        this.apiClient.get(`${config.serverUrl}${config.reservationCoverage}/${monthId}`)
         .subscribe((responseBody)=>{
             let reservationData = responseBody as ReservationData[];
             this.reservationData = reservationData;

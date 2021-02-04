@@ -18,6 +18,7 @@ namespace AuthServer.Controllers
         public AccountRegisterController(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+
         }
 
         [HttpPost]
