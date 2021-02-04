@@ -7,5 +7,7 @@ namespace AuthServer.Model
 {
     public class UserRegisterOutputModel
     {
+        public bool Error { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

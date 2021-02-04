@@ -3,6 +3,7 @@ using IdentityServerConfig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AuthServer.Controllers
@@ -20,7 +21,7 @@ namespace AuthServer.Controllers
         }
 
         [HttpPost]
-        public async Task<string> Register([FromBody]UserRegisterInputModel registerModel)
+        public async Task<UserRegisterOutputModel> Register([FromBody]UserRegisterInputModel registerModel)
         {
             ApplicationUser user = new ApplicationUser
             {
@@ -30,10 +31,16 @@ namespace AuthServer.Controllers
 
             var createResult = await userManager.CreateAsync(user, registerModel.Password);
             if (createResult.Succeeded) {
-                return "Create user success";
+                return new UserRegisterOutputModel {
+                    Error = false
+                };
             }
 
-            return "Create user failed";
+            return new UserRegisterOutputModel
+            {
+                Error = false,
+                ErrorMessage = createResult.Errors.First().Description,
+            };
         }
     }
 }
