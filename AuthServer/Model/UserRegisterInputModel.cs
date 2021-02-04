@@ -9,10 +9,11 @@ namespace AuthServer.Model
     public class UserRegisterInputModel
     {
         [Required]
-        public string Username;
+        public string Username { get; set; }
         [EmailAddress]
-        public string Email;
-        
-        public string Password;
+        public string Email { get; set; }
+        [Required]
+        [MinLength(6)]
+        public string Password { get; set; }
     }
 }

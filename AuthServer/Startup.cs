@@ -76,8 +76,7 @@ namespace AuthServer
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>()
             .AddResourceOwnerValidator<PasswordValidator>()
-            .AddProfileService<IdentityProfileService>()
-            .AddTestUsers(TestUsers.SetTestUser);
+            .AddProfileService<IdentityProfileService>();
 
             identityBuilder.AddDeveloperSigningCredential();
         }

@@ -1,4 +1,5 @@
-﻿using IdentityServerConfig;
+﻿using AuthServer.Model;
+using IdentityServerConfig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,9 +20,20 @@ namespace AuthServer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register()
+        public async Task<string> Register([FromBody]UserRegisterInputModel registerModel)
         {
-            throw new NotImplementedException();
+            ApplicationUser user = new ApplicationUser
+            {
+                UserName = registerModel.Username,
+                Email = registerModel.Email,
+            };
+
+            var createResult = await userManager.CreateAsync(user, registerModel.Password);
+            if (createResult.Succeeded) {
+                return "Create user success";
+            }
+
+            return "Create user failed";
         }
     }
 }

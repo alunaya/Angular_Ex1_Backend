@@ -23,8 +23,7 @@ namespace AuthServer.IdentityServerConfig
 
         public Task IsActiveAsync(IsActiveContext context)
         {
-            var user = userManager.GetUserAsync(context.Subject).Result;
-            context.IsActive = user != null;
+            context.IsActive = true;
             return Task.FromResult(0);
 
         }
