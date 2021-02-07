@@ -33,7 +33,7 @@ namespace Angular_Ex1_Backend
         {
             services.AddControllers();
             services.AddDbContext<AngularTest1DbContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
+                options => options.UseMySql(Configuration.GetConnectionString("DummyData"),
                     new MySqlServerVersion(new System.Version(5, 5, 68)),
                     mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
 
@@ -111,9 +111,8 @@ namespace Angular_Ex1_Backend
             //        spa.UseAngularCliServer(npmScript: "start");
             //    }
 
-                
-            //});
 
+            //});
         }
     }
 }

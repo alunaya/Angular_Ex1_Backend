@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using IdentityServer4.Test;
 using Microsoft.IdentityModel.Logging;
+using System.Linq;
 
 namespace AuthServer
 {
@@ -44,7 +45,7 @@ namespace AuthServer
             });
 
             services.AddDbContext<IdentityDbContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("Dummy-Data"),
+                options => options.UseMySql(Configuration.GetConnectionString("IdentityDb"),
                     new MySqlServerVersion(new System.Version(5, 5, 68)),
                     mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
 
@@ -92,6 +93,21 @@ namespace AuthServer
             {
                 endpoints.MapControllers();
             });
+
+            MigrateDatabase(app);
+        }
+
+        private void MigrateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<IdentityDbContext>();
+
+                if (context.Database.GetPendingMigrations().Any())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
