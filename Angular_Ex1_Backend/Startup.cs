@@ -62,7 +62,7 @@ namespace Angular_Ex1_Backend
 
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options=> {
-                    options.Authority = "http://localhost:6000";
+                    options.Authority = "https://localhost:6001";
 
                     options.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
