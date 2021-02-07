@@ -12,17 +12,15 @@ namespace Angular_Ex1_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AwsController : ControllerBase
     {
-        private readonly AmazonEC2Client ec2Client;
         private readonly IMonthRepo monthRepo;
         private readonly IServicesBillingRepo serviceBillingRepo;
         private readonly IReservationCoverageRepo reservedCoverageRepo;
 
         public AwsController(AmazonEC2Client ec2Client, IMonthRepo monthRepo, IServicesBillingRepo serviceBillingRepo, IReservationCoverageRepo reservedCoverageRepo)
         {
-            this.ec2Client = ec2Client ?? throw new ArgumentNullException(nameof(ec2Client));
             this.monthRepo = monthRepo ?? throw new ArgumentNullException(nameof(monthRepo));
             this.serviceBillingRepo = serviceBillingRepo ?? throw new ArgumentNullException(nameof(serviceBillingRepo));
             this.reservedCoverageRepo = reservedCoverageRepo ?? throw new ArgumentNullException(nameof(reservedCoverageRepo));

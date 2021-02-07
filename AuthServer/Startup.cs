@@ -1,8 +1,8 @@
 using AuthServer.Database.Model;
 using AuthServer.IdentityServerConfig;
-using AuthServer.Model;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
+using IdentityServerConfig;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System;
 using IdentityServer4.Test;
 using Microsoft.IdentityModel.Logging;
 using System.Linq;
@@ -50,12 +51,21 @@ namespace AuthServer
                     mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options=> {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+                options.Password.RequiredLength = 6;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
+            })
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IResourceOwnerPasswordValidator, TestUserResourceOwnerPasswordValidator>();
-            services.AddTransient<IProfileService, TestUserProfileService>();
+            services.AddTransient<IResourceOwnerPasswordValidator, PasswordValidator>();
+            services.AddTransient<IProfileService, IdentityProfileService>();
 
             IIdentityServerBuilder identityBuilder = services.AddIdentityServer(options =>
             {
@@ -68,9 +78,8 @@ namespace AuthServer
             .AddInMemoryApiResources(Config.Apis)
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<ApplicationUser>()
-            .AddResourceOwnerValidator<TestUserResourceOwnerPasswordValidator>()
-            .AddProfileService<TestUserProfileService>()
-            .AddTestUsers(TestUsers.SetTestUser);
+            .AddResourceOwnerValidator<PasswordValidator>()
+            .AddProfileService<IdentityProfileService>();
 
             identityBuilder.AddDeveloperSigningCredential();
         }
