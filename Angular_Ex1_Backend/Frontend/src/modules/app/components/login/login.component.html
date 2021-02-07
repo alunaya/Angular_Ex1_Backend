@@ -1,0 +1,33 @@
+<div class="container" style="max-width: 700px;">
+    <div class="card">
+        <div class="card-header text-center">
+            Đăng nhập
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                  <input type="email" 
+                  class="form-control" 
+                  id="exampleInputEmail1" 
+                  aria-describedby="emailHelp" 
+                  placeholder="Tên người dùng" 
+                  [value]="username"
+                  (change)="username = $event.target.value">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <input 
+                  type="password" 
+                  class="form-control" 
+                  id="exampleInputPassword1" 
+                  placeholder="Mật khẩu" 
+                  [value]="password"
+                  (change)="password = $event.target.value"
+                  >
+                </div>
+                
+                <button type="button" class="btn btn-primary" (click)="login()">Đăng nhập</button>
+              </form>
+        </div>
+    </div>
+</div>
