@@ -7,9 +7,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["AuthServer/AuthServer.csproj", "AuthServer/"]
+COPY ["./AuthServer.csproj", "AuthServer/"]
 RUN dotnet restore "AuthServer/AuthServer.csproj"
-COPY . .
+COPY . ./AuthServer
 WORKDIR "/src/AuthServer"
 RUN dotnet build "AuthServer.csproj" -c Release -o /app/build
 

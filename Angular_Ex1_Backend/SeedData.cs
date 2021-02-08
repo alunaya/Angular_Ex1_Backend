@@ -10,6 +10,7 @@ using System.Threading;
 using Microsoft.Extensions.Hosting;
 using Amazon.EC2.Model;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Angular_Ex1_Backend
 {
@@ -34,6 +35,12 @@ namespace Angular_Ex1_Backend
                     string[] exampleAwsServices = {"EC2","RDS","S3","Other", "CodeBuild", "Rekognition", "Polly", "Lex", "CodeCommit", "Lambda", "DynamoDb", "ElastiCache", "CloudFront", "RedShift", "SNS", "GatwayApi" };
 
                     var dbContext = scope.ServiceProvider.GetRequiredService<AngularTest1DbContext>();
+
+                    if (dbContext.Database.GetPendingMigrations().Any())
+                    {
+                        dbContext.Database.Migrate();
+                    }
+
                     if (dbContext.Months.Count() > 0
                         && dbContext.ServicesBill.Count() > 0 
                         && dbContext.ReservationCoverages.Count() > 0)
