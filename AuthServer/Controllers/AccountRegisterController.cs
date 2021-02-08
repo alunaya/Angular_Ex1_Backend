@@ -39,8 +39,8 @@ namespace AuthServer.Controllers
 
             return new UserRegisterOutputModel
             {
-                Error = false,
-                ErrorMessage = createResult.Errors.First().Description,
+                Error = true,
+                ErrorMessage = createResult.Errors.FirstOrDefault()?.Description,
             };
         }
     }
