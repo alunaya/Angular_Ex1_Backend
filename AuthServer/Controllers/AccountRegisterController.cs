@@ -18,6 +18,7 @@ namespace AuthServer.Controllers
         public AccountRegisterController(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+
         }
 
         [HttpPost]
@@ -32,7 +33,7 @@ namespace AuthServer.Controllers
             var createResult = await userManager.CreateAsync(user, registerModel.Password);
             if (createResult.Succeeded) {
                 return new UserRegisterOutputModel {
-                    Error = false,
+                    Error = false
                 };
             }
 

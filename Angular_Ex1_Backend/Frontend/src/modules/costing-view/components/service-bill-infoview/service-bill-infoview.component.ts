@@ -104,7 +104,7 @@ export class ServiceBillInfoviewComponent {
       return;
     }
 
-    this.apiClient.get(`${config.serverUrl}${config.servicesBill}${monthId}`)
+    this.apiClient.get(`${config.serverUrl}${config.servicesBill}/${monthId}`)
       .subscribe((responseBody) => {
       let serviceBillData: ServiceBillData = responseBody as ServiceBillData;
     
