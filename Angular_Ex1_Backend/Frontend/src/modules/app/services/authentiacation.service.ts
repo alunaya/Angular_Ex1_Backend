@@ -9,10 +9,35 @@ interface UserInfo {
     accessToken: string,
 }
 
+interface loginResponse {
+    access_token: string,
+    refresh_token: string
+}
+
+interface loginRequest {
+    username: string,
+    password: string,
+    client_id: string,
+    grant_type: string
+}
+
+interface registerRequest {
+    username: string,
+    email: string,
+    password: string,
+}
+
+interface registerResponse {
+    error: boolean,
+    errorMessage: string | null
+}
+
 const defaultUserInfo = {
     refreshToken: '',
     accessToken: ''
 }
+
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -36,14 +61,14 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${config.authServerUrl}/${config.tokenEnpoint}`,
-            {
-                username: username,
-                password: password,
-                client_id: config.authClientId,
-                grant_type: config.authGrantType
-            }
-        )
+        const loginRequest: loginRequest = {
+            username: username,
+            password: password,
+            client_id: config.authClientId,
+            grant_type: config.authGrantType
+        }
+
+        return this.http.post<loginResponse>(`${config.authServerUrl}/${config.tokenEnpoint}`, loginRequest)
             .pipe(map(resBody => {
                 const user: UserInfo = {
                     accessToken: resBody.access_token,
@@ -53,6 +78,14 @@ export class AuthenticationService {
                 this.currentUserSubject.next(user);
                 return user;
             }));
+    }
+
+    register(username: string, password: string, email: string){
+        const registerRequest: registerRequest = {
+            username, password, email
+        }
+
+        return this.http.post<registerResponse>(`${config.authServerUrl}/${config.accountRegisterEndpoint}`, registerRequest);
     }
 
     logout() {

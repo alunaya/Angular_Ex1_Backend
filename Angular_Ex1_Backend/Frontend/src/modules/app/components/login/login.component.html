@@ -4,16 +4,17 @@
             Đăng nhập
         </div>
         <div class="card-body">
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div *ngIf="error" class="alert alert-danger" role="alert">
+                  {{error}}
+                </div>
                 <div class="form-group">
                   <input type="email" 
                   class="form-control" 
                   id="exampleInputEmail1" 
                   aria-describedby="emailHelp" 
-                  placeholder="Tên người dùng" 
-                  [value]="username"
-                  (change)="username = $event.target.value">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  placeholder="Tên người dùng hoặc email" 
+                  formControlName="username" class="form-control">
                 </div>
                 <div class="form-group">
                   <input 
@@ -21,12 +22,17 @@
                   class="form-control" 
                   id="exampleInputPassword1" 
                   placeholder="Mật khẩu" 
-                  [value]="password"
-                  (change)="password = $event.target.value"
+                  formControlName="password" class="form-control"
                   >
                 </div>
-                
-                <button type="button" class="btn btn-primary" (click)="login()">Đăng nhập</button>
+                <div class="form-group">
+                  <p> Chưa có tài khoản?
+                    <a [routerLink]="['/register']">
+                      Đăng ký
+                    </a>
+                  </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
               </form>
         </div>
     </div>
